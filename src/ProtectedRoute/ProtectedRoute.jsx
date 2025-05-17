@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function ProtectedRoute({ children }) {
     const [loading, setLoading] = useState(false); // was true
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(true); // was false
 
     // useEffect(() => {
     //     axios.get('http://localhost:8000/checkSession.php', {
