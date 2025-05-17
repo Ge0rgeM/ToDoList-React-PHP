@@ -7,7 +7,7 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<LoginRegister />} />
+                <Route path="/ToDoList-React-PHP" element={<LoginRegister />} />
                 <Route
                     path="/todolist"
                     element={
