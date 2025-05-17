@@ -1,12 +1,8 @@
 <?php
 // server.php
-
+session_start();
 // Allow requests from any origin (for development only)
-header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: http://localhost:5173");
-header("Access-Control-Allow-Credentials: true");
-header("Access-Control-Allow-Headers: Content-Type");
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+require_once "headers.php";
 
 // Handle preflight OPTIONS request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -22,8 +18,8 @@ try{
     require_once "dbConnection.php";
     
     $user = [
-        "username" => "George",
-        "pwd" => "GiorgiNika",
+        "username" => "",
+        "pwd" => "",
         "email" => "Sample@gmail.com"
     ];
     $checkStmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");

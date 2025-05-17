@@ -20,7 +20,7 @@ function ProtectedRoute({ children }) {
  
     if (loading) return <div>Loading...</div>;
 
-    return isAuthenticated ? children : <Navigate to="/ToDoList-React-PHP" />;
+    return isAuthenticated ? children : <Navigate to="/" />;
 }
 
 export default ProtectedRoute;

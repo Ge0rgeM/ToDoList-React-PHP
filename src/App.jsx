@@ -5,9 +5,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/ToDoList-React-PHP/">
             <Routes>
-                <Route path="/ToDoList-React-PHP" element={<LoginRegister />} />
+                <Route path="/" element={<LoginRegister />} />
                 <Route
                     path="/todolist"
                     element={

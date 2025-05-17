@@ -1,14 +1,15 @@
 <?php
 session_start();
-header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: http://localhost:5173");
-header("Access-Control-Allow-Credentials: true");
-header("Access-Control-Allow-Headers: Content-Type");
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+require_once "headers.php";
 
+$response = [];
 
 if (isset($_SESSION['username'])) {
-    echo json_encode(['loggedIn' => true, 'username' => $_SESSION['username']]);
+    $response = ['loggedIn' => true, 'username' => $_SESSION['username']];
+    error_log("Session is active for user: " . $_SESSION['username']);
 } else {
-    echo json_encode(['loggedIn' => false]);
+    error_log("Session not set or expired");
+    $response = ['loggedIn' => false];
 }
+
+echo json_encode($response);
