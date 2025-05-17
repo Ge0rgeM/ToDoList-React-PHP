@@ -1,0 +1,108 @@
+.container {
+    max-width: 70vw;
+    min-height: 77vh;
+    background-color: #F0DED0;
+    border-radius: 2%;
+    margin: auto;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; 
+}
+.inputsWrapper{
+    display: flex;
+    justify-content: center;
+    padding: 3% 3% 0 3%;
+}
+.tasksListWrapper{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.inputCss{
+    width: 80%;
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid #AE887B;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: cursive;
+    color: #AE887B;
+}
+.inputCss:focus{
+    outline: #AE887B;
+}
+.inputCss::placeholder{
+    color: #AE887B;
+}
+
+.butn{
+    color: white;
+    border: none;
+    min-width: 9%;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    background-color: #AE887B;
+    font-weight:300;
+    font-family: cursive;
+    transition: 1s;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin-left: 1%;
+}
+.butn:hover{
+    background-color: #c09587;
+}
+
+.task{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    min-height: 45px;
+    border-radius: 5px;
+    border-color: black;
+    color: white;
+    border-width: 3px;
+    margin: 1% 0 1% 0;
+    background: linear-gradient(90deg,#85675d 0%,#c09587 100%);
+    /* background: linear-gradient(90deg,rgb(58, 7, 154) 0%,rgb(84, 8, 225) 100%); */
+    padding: 0 1% 0 1%;
+    word-break: break-all;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+    transition: .3s;
+}
+.task:hover{
+    transform: scale(1.02);
+    background: linear-gradient(90deg,#85675d 0%,#dead9c 100%);
+    /* background: linear-gradient(90drgb(164, 127, 115)71, 9, 187) 0%,rgb(91, 8, 246) 100%); */
+}
+.taskText{
+    cursor: pointer;
+    width: 100%;
+    min-height: 45px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    padding: 1%;
+    font-family: cursive;
+}
+.deleteImgButn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    padding: 0 1% 0 1%;
+    word-break: normal;
+    object-fit: scale-down;
+    margin: 2%;
+    border-radius: 5px;
+    transition: .3s;
+}
+.deleteImgButn:hover{
+    transform: scale(1.2);
+}
+.strike {
+    text-decoration: line-through #AE887B 15%;
+    color: #ddd1cc;
+}
