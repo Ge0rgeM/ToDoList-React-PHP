@@ -22,7 +22,7 @@ $stmt->execute();
 
 $stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS user_tasks (
     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    usernname VARCHAR(30) NOT NULL,
+    username VARCHAR(30) NOT NULL,
     tasks_text TEXT NOT NULL,
     tasks_status ENUM('pending', 'completed') NOT NULL DEFAULT 'pending',
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIME,

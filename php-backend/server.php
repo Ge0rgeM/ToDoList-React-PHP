@@ -1,7 +1,7 @@
 <?php
 // server.php
 session_start();
-// Allow requests from any origin (for development only)
+
 require_once "headers.php";
 
 // Handle preflight OPTIONS request
@@ -18,45 +18,24 @@ try{
     require_once "dbConnection.php";
     
     $user = [
-        "username" => "",
-        "pwd" => "",
-        "email" => "Sample@gmail.com"
+        "user_id" => $_SESSION["user_id"],
+        "username" => $_SESSION["username"],
+        "pwd" => $_SESSION["pwd"],
+        "email" => $_SESSION["email"]
     ];
-    $checkStmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
-    $checkStmt->execute(['username' => $user["username"]]);
 
-    if($checkStmt->rowCount() === 0){
-        $stmt = $pdo->prepare("INSERT INTO users (username, pwd, email) VALUES (:username, :pwd, :email)");
-        $stmt->bindParam(':username', $user["username"]);
-        $stmt->bindParam(':pwd', $user["pwd"]);
-        $stmt->bindParam(':email', $user["email"]);
-        $stmt->execute();
-    }
-
-    $activeUserStmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
-    $activeUserStmt->execute(['username' => $user["username"]]);
-
-    $activeUser = $activeUserStmt->fetchall(PDO::FETCH_ASSOC)[0]["id"];
-    
     $deleteStmt = $pdo->prepare("DELETE FROM user_tasks WHERE users_id = :users_id");
-    $deleteStmt->execute(['users_id' => $activeUser]);
+    $deleteStmt->execute(['users_id' => $user["user_id"]]);
     
     foreach($data as $ind => $obj){
-        error_log(print_r($ind, true));
-        error_log(print_r($obj, true));
-        foreach($obj as $key => $value){
-            error_log(print_r($value, true));
-        }
         $taskStatus = $obj["isDone"]? "completed" : "pending";
-        $stmt = $pdo->prepare("INSERT INTO user_tasks (usernname, tasks_text, tasks_status, users_id) VALUES (:usernname, :tasks_text, :tasks_status, :users_id)");
-        $stmt->bindParam(':usernname', $user["username"]);
+        $stmt = $pdo->prepare("INSERT INTO user_tasks (username, tasks_text, tasks_status, users_id) VALUES (:username, :tasks_text, :tasks_status, :users_id)");
+        $stmt->bindParam(':username', $user["username"]);
         $stmt->bindParam(':tasks_text', $obj["taskTxt"]);
         $stmt->bindParam(':tasks_status', $taskStatus);
-        $stmt->bindParam(':users_id', $activeUser);
+        $stmt->bindParam(':users_id', $user["user_id"]);
         $stmt->execute();
     }
-    // echo json_encode(["status" => "success", "message" => "Database connection successful"]);
-    // error_log(print_r($data, true));
     error_log("Connection was successful: ");
     echo json_encode(["status" => "success", "message" => "Database connected", "data" => $data]);
 }catch(PDOException $e){

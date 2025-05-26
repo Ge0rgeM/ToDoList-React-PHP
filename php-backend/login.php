@@ -17,6 +17,16 @@ try {
 
     if ($user && $password === $user['pwd']) {
         $_SESSION['username'] = $user['username'];
+        $userId = $pdo->prepare("SELECT id FROM users WHERE username = ?");
+        $userId->execute([$username]);
+        $_SESSION['user_id'] = $userId->fetch()['id'];
+        $userPwd = $pdo->prepare("SELECT pwd FROM users WHERE username = ?");
+        $userPwd->execute([$username]);
+        $_SESSION['pwd'] = $userPwd->fetch()['pwd'];
+        $userEmail = $pdo->prepare("SELECT email FROM users WHERE username = ?");
+        $userEmail->execute([$username]);
+        $_SESSION['email'] = $userEmail->fetch()['email'];
+        // error_log("ID for user: " . $_SESSION['user_id']);
         error_log("User logged in: " . $user['username']);
         echo json_encode(['status' => 'success', 'message' => 'Logged in']);
     } else {

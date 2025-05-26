@@ -1,5 +1,5 @@
 import styles from "./Container.module.css";
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import garbagePhoto from "../assets/garbage.png";
 import $ from "jquery";
 
@@ -7,7 +7,29 @@ function Container() {
     const [tasks, setTasks] = useState([]);
     const [taskText, setTaskText] = useState("");
     const [id, setId] = useState(0);
-
+    const hasFetched = useRef(false);
+    useEffect(() => {
+        if (hasFetched.current) return;
+            hasFetched.current = true;
+        fetch('http://localhost:8000/loadTasksFromDb.php', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include'
+        })
+        .then((response) => response.json())
+        .then(data => {
+            data.data.forEach(element => {
+                const newTask = {id: element.id, taskTxt: element.tasks_text, isDone: element.tasks_status === "pending" ? false : true};
+                console.log("new task:", newTask);
+                setId(i => i = element.id + 1);
+                setTasks(t => [...t, newTask]);
+            });
+            console.log("server reponse:", data);
+        })
+        .catch(err => {
+            console.log("Error:", err);
+        });
+    }, []);
     function checkTextInput(txt) {
         if (txt === "") {
             alert("Please enter a task");
@@ -45,6 +67,7 @@ function Container() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(tasks),
+            credentials: 'include'
         })
         .then((response) => response.json())
         .then(data => {

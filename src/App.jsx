@@ -18,11 +18,6 @@ function App() {
                 />
             </Routes>
         </BrowserRouter>
-        // <>
-        //     <LoginRegister />
-        //     <Header />
-        //     <Container />
-        // </>
     );
 }
 
