@@ -1,12 +1,15 @@
 import styles from "./Container.module.css";
 import React, { useEffect, useState, useRef } from "react";
 import garbagePhoto from "../assets/garbage.png";
-import $ from "jquery";
+import _ from 'lodash';
+import { useNavigate } from 'react-router-dom';
 
 function Container() {
+    const [initialData, setInitialData] = useState([]);
     const [tasks, setTasks] = useState([]);
     const [taskText, setTaskText] = useState("");
     const [id, setId] = useState(0);
+    const navigate = useNavigate();
     const hasFetched = useRef(false);
     useEffect(() => {
         if (hasFetched.current) return;
@@ -22,6 +25,7 @@ function Container() {
                 const newTask = {id: element.id, taskTxt: element.tasks_text, isDone: element.tasks_status === "pending" ? false : true};
                 console.log("new task:", newTask);
                 setId(i => i = element.id + 1);
+                setInitialData(i => [...i, newTask]);
                 setTasks(t => [...t, newTask]);
             });
             console.log("server reponse:", data);
@@ -62,35 +66,75 @@ function Container() {
         setTasks(t => t.map((task) => task.id === index ? {...task, isDone: !task.isDone} : task));
     }
     console.log(JSON.stringify(tasks))
-    const handleSaving = () => {
-        fetch('http://localhost:8000/server.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(tasks),
-            credentials: 'include'
-        })
-        .then((response) => response.json())
-        .then(data => {
-            console.log("server reponse:", data);
-        })
-        .catch(err => {
-            console.log("Error:", err);
+    const handleSaving = async () => {
+        return new Promise((resolve, reject) => {
+            setInitialData([]); // You can keep this or refactor
+            tasks.forEach((task) => {
+                setInitialData(i => [...i, task]);
+            });
+
+            fetch('http://localhost:8000/server.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(tasks),
+                credentials: 'include'
+            })
+            .then((response) => response.json())
+            .then(data => {
+                console.log("server response:", data);
+                resolve();
+            })
+            .catch(err => {
+                console.log("Error:", err);
+                reject(err);
+            });
         });
     }
+    async function logout() {
+        try {
+            const response = await fetch('http://localhost:8000/logout.php', {
+                method: 'POST',
+                credentials: 'include', // very important for sessions
+            });
+
+            if (response.ok) {
+                // Clear any React state or context, then redirect or update UI
+                navigate('/');
+                console.log('Logged out');
+            } else {
+                console.error('Logout failed', response);
+            }
+        } catch (err) {
+            console.error('ErrorLogOut:', err);
+        }
+    }
+    async function handleLogOut() {
+        if (!_.isEqual(initialData, tasks)) {
+            console.log("Atasks:", tasks);
+            console.log(initialData);
+            if (window.confirm("You have unsaved changes. Do you want to save them before logging out?")) {
+                await handleSaving(); // wait for saving to finish
+            }
+        }
+        await logout(); // logout only after saving or if no changes
+    }
     return (
-        <div className={styles.container}>
-            <div className={styles.inputsWrapper}>
-                <input type="text" value = {taskText} className = {styles.inputCss} placeholder={"Task To Be Done..."} onChange={handleTaskChange} onKeyDown={handleKeyPress}/>
-                <button className = {styles.butn} onClick={handleTaskAdd}>Add</button>
-                <button className = {styles.butn} onClick={handleSaving}>Save</button>
+        <>
+            <div className={styles.container}>
+                <button className = {styles.butn_logout} onClick={handleLogOut}>Logout</button>
+                <div className={styles.inputsWrapper}>
+                    <input type="text" value = {taskText} className = {styles.inputCss} placeholder={"Task To Be Done..."} onChange={handleTaskChange} onKeyDown={handleKeyPress}/>
+                    <button className = {styles.butn} onClick={handleTaskAdd}>Add</button>
+                    <button className = {styles.butn} onClick={handleSaving}>Save</button>
+                </div>
+                <div id="tasksListContainer" className ={styles.tasksListWrapper}> 
+                    {tasks.map((task) => <div className={styles.task} key={task.id}>
+                        <div onClick={() => taskTextClickerHandler(task.id)} className={`${styles.taskText} ${task.isDone ? styles.strike : ""}`}>{task.taskTxt}</div>
+                        <div><img onClick={() => removeTaskHandler(task.id)} className={styles.deleteImgButn} src={garbagePhoto} alt="remove" width="40px"></img></div>
+                    </div>)}
+                </div>
             </div>
-            <div id="tasksListContainer" className ={styles.tasksListWrapper}> 
-                {tasks.map((task) => <div className={styles.task} key={task.id}>
-                    <div onClick={() => taskTextClickerHandler(task.id)} className={`${styles.taskText} ${task.isDone ? styles.strike : ""}`}>{task.taskTxt}</div>
-                    <div><img onClick={() => removeTaskHandler(task.id)} className={styles.deleteImgButn} src={garbagePhoto} alt="remove" width="40px"></img></div>
-                </div>)}
-            </div>
-        </div>
+        </>
     );
 }
 
