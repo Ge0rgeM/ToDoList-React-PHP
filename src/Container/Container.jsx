@@ -11,6 +11,8 @@ function Container() {
     const [id, setId] = useState(0);
     const navigate = useNavigate();
     const hasFetched = useRef(false);
+    const [isSaving, setIsSaving] = useState(false);
+
     useEffect(() => {
         if (hasFetched.current) return;
             hasFetched.current = true;
@@ -67,6 +69,10 @@ function Container() {
     }
     console.log(JSON.stringify(tasks))
     const handleSaving = async () => {
+        if(isSaving) return; // Prevent multiple saves
+
+        setIsSaving(i => i = true);
+
         return new Promise((resolve, reject) => {
             setInitialData([]); // You can keep this or refactor
             tasks.forEach((task) => {
@@ -87,6 +93,9 @@ function Container() {
             .catch(err => {
                 console.log("Error:", err);
                 reject(err);
+            })
+            .finally(() => {
+                setIsSaving(i => i = false);
             });
         });
     }
@@ -125,7 +134,7 @@ function Container() {
                 <div className={styles.inputsWrapper}>
                     <input type="text" value = {taskText} className = {styles.inputCss} placeholder={"Task To Be Done..."} onChange={handleTaskChange} onKeyDown={handleKeyPress}/>
                     <button className = {styles.butn} onClick={handleTaskAdd}>Add</button>
-                    <button className = {styles.butn} onClick={handleSaving}>Save</button>
+                    <button className = {styles.butn} onClick={handleSaving} disabled={isSaving}>{isSaving?'Saving...':'Save'}</button>
                 </div>
                 <div id="tasksListContainer" className ={styles.tasksListWrapper}> 
                     {tasks.map((task) => <div className={styles.task} key={task.id}>

@@ -5,8 +5,14 @@ import { useNavigate } from 'react-router-dom';
 function LoginPage() {
 const [message, setMessage] = useState('');
 const navigate = useNavigate();
-  const handleLogin = async (e) => {
+const [isSubmitting, setIsSubmitting] = useState(false);
+const handleLogin = async (e) => {
     e.preventDefault();
+
+    if(isSubmitting) return; // Prevent multiple submissions
+
+    setIsSubmitting(i => i = true);
+
     const formData = new FormData(e.target);
     const username = formData.get('username');
     const password = formData.get('password');
@@ -17,7 +23,7 @@ const navigate = useNavigate();
       );
 
       if (res.data.status === 'success') {
-        setMessage('Login successful!');
+        setMessage('Login   !');
         // Optionally: redirect or navigate to a protected route
         navigate('/todolist');
         // window.location.href = 'http://localhost:5173/todolist'; // Example redirect
@@ -26,8 +32,10 @@ const navigate = useNavigate();
       }
     } catch (err) {
       setMessage(err.response?.data?.message || 'Login error');
+    } finally{
+      setIsSubmitting(i => i = false);
     }
-  };
+};
 
 return (
     <div>
@@ -43,7 +51,7 @@ return (
           name="password"
           placeholder="Password"
         /><br/>
-        <button type="submit">Login</button>
+        <button type="submit" disabled={isSubmitting}> {isSubmitting ? 'Logging in...' : 'Login'}</button>
       </form>
       <p>{message}</p>
     </div>
