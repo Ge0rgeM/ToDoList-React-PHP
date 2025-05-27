@@ -1,0 +1,127 @@
+:root{
+    --background-color: #F0DED0;
+    --input-text-color: #AE887B;
+    --text-color: #3b2d28;
+    --distance-to-inputs: 25px;
+    --font: cursive;
+    --label-font: 16px;
+    --input-font: 16px;
+}
+/* .wrapper  *{
+    border: red 1px dotted
+} */
+.wrapper{
+    background-color: var(--background-color);
+    border-radius: 2%;
+    max-width: 30vw;
+    margin: 12.5vh auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title{
+    margin: auto;
+    font-size: 24px;
+    margin-bottom: var(--distance-to-inputs);
+    font-family: var(--font);
+    color: var(--text-color);
+}
+
+.inputWrapper{
+    margin-bottom: var(--distance-to-inputs);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.singleInputWrapper{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.inputs{
+    color: var(--input-text-color); 
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font);
+    font-size: var(--input-size);
+    border: 2px solid #AE887B;
+    padding-left: 5px;
+}
+.inputs:focus{
+    outline: #AE887B;
+}
+.inputs::placeholder{
+    color: #AE887B;
+}
+.labelWrapper{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 40%;
+}
+.inputLabels{
+    font-family: var(--font);
+    color: var(--text-color);
+    font-size: var(--label-font);
+}
+
+
+.buttonWrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: calc(var(--distance-to-inputs) - 15px);
+}
+.saveButton{
+    color: white;
+    border: none;
+    min-width: 15%;
+    height: 35px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    background-color: #AE887B;
+    font-weight: 500;
+    font-family: var(--font);
+    transition: 1s;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.saveButton:hover{
+    background-color: #3b2d28;
+}
+
+.registerWrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.registerButton{
+    all:unset;
+    cursor: pointer;
+    font-family: var(--font);
+}
+
+@media (max-width: 1280px) {
+    .wrapper {
+        max-width: 50vw;
+    }
+}
+@media (max-width: 768px) {
+    .wrapper {
+        max-width: 80vw;
+    }
+    .inputLabels{
+        font-size: calc(var(--label-font) - 4px);
+    }
+    .inputs{
+        font-size: calc(var(--input-font) - 4px);
+    }
+}

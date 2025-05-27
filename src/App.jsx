@@ -1,13 +1,15 @@
 import ToDoList from "./Pages/ToDoList"
-import LoginRegister from "./Pages/LoginRegister"
+import Register from "./Pages/Register"
+import Login from "./Pages/Login"
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
     return (
-        <BrowserRouter basename="/ToDoList-React-PHP/">
+        <BrowserRouter basename="/ToDoList-React-PHP">
             <Routes>
-                <Route path="/" element={<LoginRegister />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route
                     path="/todolist"
                     element={

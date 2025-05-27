@@ -108,7 +108,7 @@ function Container() {
 
             if (response.ok) {
                 // Clear any React state or context, then redirect or update UI
-                navigate('/');
+                navigate('/login');
                 console.log('Logged out');
             } else {
                 console.error('Logout failed', response);
