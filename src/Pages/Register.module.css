@@ -2,7 +2,7 @@
     --background-color: #F0DED0;
     --input-text-color: #AE887B;
     --text-color: #3b2d28;
-    --distance-to-inputs: 25px;
+    --distance-to-inputs: 35px !important;
     --font: cursive;
     --label-font: 16px;
     --input-font: 16px;
@@ -35,6 +35,7 @@
     justify-content: center;
 }
 .singleInputWrapper{
+    position: relative;
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -107,6 +108,16 @@
     all:unset;
     cursor: pointer;
     font-family: var(--font);
+}
+
+.errorWrapper{
+    position: absolute;
+    bottom: 0px; /* Places it below the input */
+    top: calc(var(--distance-to-inputs) - 10px);
+    left: 0;
+    color: #d93025;
+    /* padding-left: 2px; */
+    /* width: 100%; */
 }
 
 @media (max-width: 1280px) {
