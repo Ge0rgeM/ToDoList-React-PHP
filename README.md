@@ -31,22 +31,22 @@ It's designed for local development using XAMPP.
 
 To run this project locally, you need to have the following installed:
 
-- [Node.js](https://nodejs.org/) (v18 or higher recommended)
-- [npm](https://www.npmjs.com/) (comes with Node.js)
-- A modern browser (e.g., Chrome, Firefox)
-- A local PHP server (e.g., XAMPP, Laragon, or built-in PHP server)
-- MySQL or compatible database (for backend)
+- 🟢 [Node.js](https://nodejs.org/) (v18 or higher)
+- 📦 [npm](https://www.npmjs.com/) (comes with Node.js)
+- 🌐 A modern browser (e.g., Chrome, Firefox)
+- 🐘 A PHP server (e.g., XAMPP, Laragon, or built-in PHP server)
+- 🛢️ MySQL database (or compatible)
 
-### Required npm Packages
+### 📦 Required npm Packages
 
-Install all dependencies by running:
+Install all packages with:
 
 ```bash
 npm install
 ```
 
 ---
-## How to View Project
+## ▶️ How to View/Use Project
 
 # 1. npm install
 # npm run dev
