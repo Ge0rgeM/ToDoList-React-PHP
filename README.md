@@ -16,11 +16,15 @@ It's designed for local development using XAMPP.
 - **php-backend/**: PHP backend logic
 - [`checkSession.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php)
 - **src/**: Static assets
-    - *assets/*
-        - [`garbage.png`]()
-    - *Container/*
-        - ['Container.jsx']()
-
+    - *assets/*: Png for task delete 
+    - *Header/*: Header program code for Front-End
+    - *Container/*: Main program code for Front-End
+    - *Pages/*: Pages user can access
+    - *ProtectedRoute/*: Codes that protects main page (ToDoList) from unauthorised login.
+    - [`App.jsx`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php)
+    - [`index.css`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php)
+    - [`main.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php)
+- [`index.html`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php)
 
 # 1. npm install
 # npm run dev
