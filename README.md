@@ -8,21 +8,18 @@ It's designed for local development using XAMPP.
 - Ideal for local development with a modern frontend and traditional backend.
 
 ---
+## Table of Contents
+
 
 ## 📁 Project Structure
 
 - **php-backend/**: PHP backend logic
-  - `config.php`: Database configuration
-  - `tasks.php`: Task API handler
-- **public/**: Static assets
-- **src/**: React frontend
-  - `components/`: Reusable components
-  - `App.jsx`: Main app component
-  - `main.jsx`: React entry point
-- `index.html`: HTML template
-- `package.json`: Node dependencies
-- `vite.config.js`: Vite configuration
-- `README.md`: Project documentation
+- [`checkSession.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php)
+- **src/**: Static assets
+    - *assets/*
+        - [`garbage.png`]()
+    - *Container/*
+        - ['Container.jsx']()
 
 
 # 1. npm install
