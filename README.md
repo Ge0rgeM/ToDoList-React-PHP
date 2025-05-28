@@ -20,10 +20,30 @@ It's designed for local development using XAMPP.
     - [`Container/`](): Main container component code for the frontend
     - [`Pages/`](): Pages that are accessible by the user
     - [`ProtectedRoute/`](): Code that protects the main page (ToDoList) from unauthorized access
-    - [`App.jsx`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php)
-    - [`index.css`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php)
-    - [`main.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php)
-- [`index.html`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php)
+    - [`App.jsx`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php): Main APP Component 
+    - [`index.css`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php): Just CSS for index.html 
+    - [`main.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php): React Entry Point
+- [`index.html`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php): Just Simple HTML
+- [`README.md`](): Project Documentation
+
+---
+## ✅ Requirements
+
+To run this project locally, you need to have the following installed:
+
+- [Node.js](https://nodejs.org/) (v18 or higher recommended)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+- A modern browser (e.g., Chrome, Firefox)
+- A local PHP server (e.g., XAMPP, Laragon, or built-in PHP server)
+- MySQL or compatible database (for backend)
+
+### Required npm Packages
+
+Install all dependencies by running:
+
+```bash
+npm install
+```
 
 ---
 ## How to View Project
