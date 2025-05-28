@@ -12,8 +12,11 @@ function Container() {
     const navigate = useNavigate();
     const hasFetched = useRef(false);
     const [isSaving, setIsSaving] = useState(false);
-    const [username, setUsername] = useState('User Not Logged In!');
+    const [username, setUsername] = useState('User Not Logged In!'); // If somehow anyone went to /todolist without logging in first.
+
+    // Since user is logged in, lets load all of his/her current tasks.
     useEffect(() => {
+        // prevent two time sending request to server, since react is working by default in strict mode.
         if (hasFetched.current) return;
             hasFetched.current = true;
 
@@ -25,6 +28,7 @@ function Container() {
         .then((response) => response.json())
         .then(data => {
             setUsername(u => u = data.data.username);
+
             data.data.tasks.forEach(element => {
                 const newTask = {id: element.id, taskTxt: element.tasks_text, isDone: element.tasks_status === "pending" ? false : true};
                 console.log("new task:", newTask);
@@ -32,13 +36,14 @@ function Container() {
                 setInitialData(i => [...i, newTask]);
                 setTasks(t => [...t, newTask]);
             });
-            console.log("server reponse:", data);
         })
         .catch(err => {
-            console.log("Error:", err);
+            alert("Error Loading Tasks:");
+            console.log("Error Loading Tasks:",err);
         });
 
     }, []);
+    //to validate text
     function checkTextInput(txt) {
         if (txt === "") {
             alert("Please enter a task");
@@ -46,38 +51,45 @@ function Container() {
         }
         return true;
     }
+
     function handleTaskChange(e) {
         const val = e.target.value;
         setTaskText(t => t = val);
     }
+
     function handleTaskAdd() {
-        if (!checkTextInput(taskText)) {
+        if (!checkTextInput(taskText)) { // Check if text is valid
             return;
         }
+
         const newTask = {id: id, taskTxt: taskText, isDone: false};
-        setTasks(t => [...t, newTask]);
-        setTaskText(t => t = "");
-        setId(i => i + 1);
+        setTasks(t => [...t, newTask]); //adding task
+        setTaskText(t => t = ""); //clearing variable since task is added already
+        setId(i => i + 1); // This is just internal ID not the databse one. It's main responsibility is to delete correct task if needed.
     }
-    function handleKeyPress(event) {
+
+    function handleKeyPress(event) { // To work while user clicks on "Enter"
         if (event.key === "Enter") {
             handleTaskAdd();
         }
     }
-    function removeTaskHandler(index) {
+
+    function removeTaskHandler(index) { // Removes task
         setTasks(t => t.filter((task, _) => task.id !== index));
     }
-    function taskTextClickerHandler(index) {
+
+    function taskTextClickerHandler(index) { // To done/unDone task
         setTasks(t => t.map((task) => task.id === index ? {...task, isDone: !task.isDone} : task));
     }
-    console.log(JSON.stringify(tasks))
+    
+    //  to upload all tasks to database
     const handleSaving = async () => {
         if(isSaving) return; // Prevent multiple saves
 
         setIsSaving(i => i = true);
 
         return new Promise((resolve, reject) => {
-            setInitialData([]);
+            setInitialData([]); // we do not need previous initial data since we saved new. This is needed to check if we have any unsaved data later.
             tasks.forEach((task) => {
                 setInitialData(i => [...i, task]);
             });
@@ -100,28 +112,27 @@ function Container() {
             });
         });
     }
+
     async function logout() {
         try {
             const response = await fetch('http://localhost:8000/logout.php', {
                 method: 'POST',
-                credentials: 'include', // very important for sessions
+                credentials: 'include', // to carry session data
             });
 
-            if (response.ok) {
-                // Clear any React state or context, then redirect or update UI
+            if (response.ok) { //successfully logged out.
                 navigate('/login');
-                console.log('Logged out');
             } else {
                 console.error('Logout failed', response);
             }
         } catch (err) {
+            alert('ErrorLogOut');
             console.error('ErrorLogOut:', err);
         }
     }
+
     async function handleLogOut() {
-        if (!_.isEqual(initialData, tasks)) {
-            console.log("Atasks:", tasks);
-            console.log(initialData);
+        if (!_.isEqual(initialData, tasks)) { //isEqual is needed because even empty objects in JS are different since they are refference type. (Therefore they address on different memomries)
             if (window.confirm("You have unsaved changes. Do you want to save them before logging out?")) {
                 await handleSaving(); // wait for saving to finish
             }

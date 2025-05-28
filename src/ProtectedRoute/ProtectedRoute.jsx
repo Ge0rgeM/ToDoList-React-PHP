@@ -3,12 +3,12 @@ import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 
 function ProtectedRoute({ children }) {
-    const [loading, setLoading] = useState(true); // was true
-    const [isAuthenticated, setIsAuthenticated] = useState(false); // was false
+    const [loading, setLoading] = useState(true); 
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
         axios.get('http://localhost:8000/checkSession.php', {
-            withCredentials: true
+            withCredentials: true // to carry session variables
         }).then(res => {
             setIsAuthenticated(res.data.loggedIn);
             setLoading(false);
@@ -18,7 +18,7 @@ function ProtectedRoute({ children }) {
         });
     }, []);
  
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div>Loading...</div>; 
 
     return isAuthenticated ? children : <Navigate to="/login" />;
 }

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function LoginPage() {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const handleLogin = async (e) => {
       e.preventDefault();
 
@@ -13,19 +14,22 @@ function LoginPage() {
 
       setIsSubmitting(i => i = true);
 
+      // get values from Form
       const formData = new FormData(e.target);
       const username = formData.get('username');
       const password = formData.get('password');
+
       try {
-        console.log('Logging in with:', { username, password });
         const res = await axios.post('http://localhost:8000/login.php',
           { username, password },
-          { withCredentials: true } // Important: enables PHP session
+          { withCredentials: true } // enables PHP session
         );
+
         const data = res.data;
+
         if (data.status === 'success') {
           alert(data.message || 'Login successful!');
-          navigate('/todolist');
+          navigate('/todolist'); // Goes to ToDoList page
         } else {
           alert(data.message || 'Login failed.');
         }

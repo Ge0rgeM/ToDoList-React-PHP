@@ -14,7 +14,7 @@ function App() {
                 <Route
                     path="/todolist"
                     element={
-                        <ProtectedRoute>
+                        <ProtectedRoute> /* This prevents directly going to /ToDoList-React-PHP/todolist unless the user is logged in*/
                             <ToDoList />
                         </ProtectedRoute>
                     }

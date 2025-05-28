@@ -1,5 +1,5 @@
 import styles from './Register.module.css';
-import {useState} from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
@@ -69,7 +69,7 @@ function RegisterPage() {
         const value = e.target.value;
         setPassword(value);
         validatePassword(value);
-        validateRepeatPassword(repeatPassword); // recheck repeat password
+        validateRepeatPassword(repeatPassword); // to check if passwords match
     };
 
     const handleRepeatPasswordChange = (e) => {
@@ -93,15 +93,15 @@ function RegisterPage() {
 
     async function handleRegister(e) {
         e.preventDefault();
+
         if (!isFormValid()){
             alert('Please fill out all fields correctly.');
             return;
         }
 
-        setIsRegistering(true);
+        setIsRegistering(true); // To prevent spaming requests.
 
         try {
-            console.log('Registering user:', { username, email, password, repeatPassword });
             const res = await fetch("http://localhost:8000/register.php", {
                 method: 'POST',
                 headers: {
