@@ -8,13 +8,15 @@ function App() {
     return (
         <BrowserRouter basename="/ToDoList-React-PHP/">
             <Routes>
-                <Route path="/" element={<Navigate to="/login" replace />} /> /* Redirect root to login, Because basename is converted "/" after build*/
+                {/* //Redirect root to login, Because basename is converted "/" after build */}
+                <Route path="/" element={<Navigate to="/login" replace />} /> 
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route
                     path="/todolist"
                     element={
-                        <ProtectedRoute> /* This prevents directly going to /ToDoList-React-PHP/todolist unless the user is logged in*/
+                        // This prevents directly going to /ToDoList-React-PHP/todolist unless the user is logged in
+                        <ProtectedRoute> 
                             <ToDoList />
                         </ProtectedRoute>
                     }
