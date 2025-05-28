@@ -10,7 +10,20 @@ It's designed for local development using XAMPP.
 ---
 
 ## 📁 Project Structure
-<pre> ```bash ## 📁 Project Structure ToDoList-React-PHP/ ├── php-backend/ # PHP backend files (API, DB connection) │ ├── config.php # DB config │ └── tasks.php # Task-related logic ├── public/ # Public assets (images, favicon) ├── src/ # React source code │ ├── components/ # Reusable UI components │ ├── App.jsx # Main React component │ └── main.jsx # Entry point for Vite ├── index.html # HTML template ├── package.json # Node dependencies ├── vite.config.js # Vite configuration └── README.md # Documentation ``` </pre>
+
+- **php-backend/**: PHP backend logic
+  - `config.php`: Database configuration
+  - `tasks.php`: Task API handler
+- **public/**: Static assets
+- **src/**: React frontend
+  - `components/`: Reusable components
+  - `App.jsx`: Main app component
+  - `main.jsx`: React entry point
+- `index.html`: HTML template
+- `package.json`: Node dependencies
+- `vite.config.js`: Vite configuration
+- `README.md`: Project documentation
+
 
 # 1. npm install
 # npm run dev
