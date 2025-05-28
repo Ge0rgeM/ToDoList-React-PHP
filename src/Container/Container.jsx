@@ -12,10 +12,11 @@ function Container() {
     const navigate = useNavigate();
     const hasFetched = useRef(false);
     const [isSaving, setIsSaving] = useState(false);
-
+    const [username, setUsername] = useState('User Not Logged In!');
     useEffect(() => {
         if (hasFetched.current) return;
             hasFetched.current = true;
+
         fetch('http://localhost:8000/loadTasksFromDb.php', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
@@ -23,7 +24,8 @@ function Container() {
         })
         .then((response) => response.json())
         .then(data => {
-            data.data.forEach(element => {
+            setUsername(u => u = data.data.username);
+            data.data.tasks.forEach(element => {
                 const newTask = {id: element.id, taskTxt: element.tasks_text, isDone: element.tasks_status === "pending" ? false : true};
                 console.log("new task:", newTask);
                 setId(i => i = element.id + 1);
@@ -35,6 +37,7 @@ function Container() {
         .catch(err => {
             console.log("Error:", err);
         });
+
     }, []);
     function checkTextInput(txt) {
         if (txt === "") {
@@ -74,7 +77,7 @@ function Container() {
         setIsSaving(i => i = true);
 
         return new Promise((resolve, reject) => {
-            setInitialData([]); // You can keep this or refactor
+            setInitialData([]);
             tasks.forEach((task) => {
                 setInitialData(i => [...i, task]);
             });
@@ -87,11 +90,9 @@ function Container() {
             })
             .then((response) => response.json())
             .then(data => {
-                console.log("server response:", data);
                 resolve();
             })
             .catch(err => {
-                console.log("Error:", err);
                 reject(err);
             })
             .finally(() => {
@@ -127,9 +128,11 @@ function Container() {
         }
         await logout(); // logout only after saving or if no changes
     }
+
     return (
         <>
             <div className={styles.container}>
+                <div className={styles.userName}>{username}</div>
                 <button className = {styles.butn_logout} onClick={handleLogOut}>Logout</button>
                 <div className={styles.inputsWrapper}>
                     <input type="text" value = {taskText} className = {styles.inputCss} placeholder={"Task To Be Done..."} onChange={handleTaskChange} onKeyDown={handleKeyPress}/>

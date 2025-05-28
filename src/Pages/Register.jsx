@@ -3,7 +3,6 @@ import {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
-    const [message, setMessage] = useState('');
     const [isRegistering, setIsRegistering] = useState(false);
     
     const [password, setPassword] = useState('');
@@ -19,36 +18,38 @@ function RegisterPage() {
     const navigate = useNavigate();
 
     const validateUsername = (value) => {
-        if (!/^[a-zA-Z]+$/.test(value)) {
-            setUsernameError('Username must contain only English letters.');
+        if (!/^[a-zA-Z0-9]+$/.test(value)) {
+            setUsernameError(u => u = 'Must contain only a-Z and 0-9.');
+        } else if(value.length < 6) {
+            setUsernameError(u => u = 'Must be at least 6 characters long.');
         } else {
-            setUsernameError('');
+            setUsernameError(u => u = '');
         }
     };
 
     const validateEmail = (value) => {
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-            setEmailError('Invalid email format.');
+            setEmailError(e => e = 'Invalid email format.');
         } else {
-            setEmailError('');
+            setEmailError(e => e = '');
         }
     };
 
     const validatePassword = (value) => {
         if (value.length < 8) {
-            setPasswordError('Password must be at least 8 characters.');
+            setPasswordError(p => p = 'Must be at least 8 characters.');
         } else if (!/[A-Z]/.test(value)) {
-            setPasswordError('Password must contain at least one capital letter.');
+            setPasswordError(p => p = 'Must contain at least one capital letter.');
         } else {
-            setPasswordError('');
+            setPasswordError(p => p = '');
         }
     };
 
     const validateRepeatPassword = (value) => {
         if (value !== password) {
-            setRepeatPasswordError("Passwords don't match.");
+            setRepeatPasswordError(r => r = "Passwords don't match.");
         } else {
-            setRepeatPasswordError('');
+            setRepeatPasswordError(r => r = '');
         }
     };
 
@@ -92,7 +93,11 @@ function RegisterPage() {
 
     async function handleRegister(e) {
         e.preventDefault();
-        if (!isFormValid()) return;
+        if (!isFormValid()){
+            alert('Please fill out all fields correctly.');
+            return;
+        }
+
         setIsRegistering(true);
 
         try {
@@ -111,19 +116,15 @@ function RegisterPage() {
             });
     
             const data = await res.json();
-            console.log(data);
             
             if (data.success) {
-                setMessage('Registration successful! Redirecting to login...');
-                // setTimeout(() => {
-                //     navigate('/login');
-                // }, 2000);
+                alert('Registration successful! Redirecting to login...');
+                navigate('/login');
             } else {
-                setMessage(data.message || 'Registration failed. Please try again.');
+                alert(data.error || 'Registration failed. Please try again.');
             }
         }catch (error) {
-            console.error('Error during registration:', error);
-            setMessage('An error occurred. Please try again later.');
+            alert('An error occurred. Please try again later.');
         }finally {
             setIsRegistering(false);
         }
@@ -211,7 +212,7 @@ function RegisterPage() {
                     <button type='button' onClick={() => navigate('/login')} className={styles.registerButton}>Login</button>
                 </div>
             </form>
-            <p>{message}</p>
+            <br />  
         </div>
     );
 }

@@ -36,15 +36,8 @@ try{
         $stmt->bindParam(':users_id', $user["user_id"]);
         $stmt->execute();
     }
-    error_log("Connection was successful: ");
     echo json_encode(["status" => "success", "message" => "Database connected", "data" => $data]);
 }catch(PDOException $e){
-    error_log("Connection failed: " . $e->getMessage());
     echo json_encode(["status" => "error", "message" => "Database connection failed"]);
     exit();
 }
-
-
-
-// Save the tasks to a file (or database)
-// file_put_contents("tasks.json", json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));

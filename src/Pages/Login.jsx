@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
-  const [message, setMessage] = useState('');
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const handleLogin = async (e) => {
@@ -18,21 +17,20 @@ function LoginPage() {
       const username = formData.get('username');
       const password = formData.get('password');
       try {
+        console.log('Logging in with:', { username, password });
         const res = await axios.post('http://localhost:8000/login.php',
           { username, password },
           { withCredentials: true } // Important: enables PHP session
         );
-
-        if (res.data.status === 'success') {
-          setMessage('Login   !');
-          // Optionally: redirect or navigate to a protected route
+        const data = res.data;
+        if (data.status === 'success') {
+          alert(data.message || 'Login successful!');
           navigate('/todolist');
-          // window.location.href = 'http://localhost:5173/todolist'; // Example redirect
         } else {
-          setMessage('Login failed.');
+          alert(data.message || 'Login failed.');
         }
       } catch (err) {
-        setMessage(err.response?.data?.message || 'Login error');
+        alert(err.response?.data?.message || 'Login error');
       } finally{
         setIsSubmitting(i => i = false);
       }
@@ -77,7 +75,7 @@ function LoginPage() {
           <button type='button' onClick={() => navigate('/register')} className={styles.registerButton}>Register</button>
         </div>
       </form>
-      <p>{message}</p>
+      <br />
     </div>
   );
 }

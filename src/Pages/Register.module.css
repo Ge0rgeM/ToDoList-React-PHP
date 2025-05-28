@@ -113,11 +113,11 @@
 .errorWrapper{
     position: absolute;
     bottom: 0px; /* Places it below the input */
-    top: calc(var(--distance-to-inputs) - 10px);
+    top: calc(var(--distance-to-inputs) - 15px);
     left: 0;
     color: #d93025;
-    /* padding-left: 2px; */
-    /* width: 100%; */
+    font-family: var(--font);
+    white-space: nowrap;
 }
 
 @media (max-width: 1280px) {
