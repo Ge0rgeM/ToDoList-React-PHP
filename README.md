@@ -14,7 +14,7 @@ It's designed for local development using XAMPP.
 ## 📁 Project Structure
 
 - **php-backend/**: PHP backend logic
-- [`checkSession.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php)
+- [`checkSession.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php): checks Session
 - **src/**: Static assets
     - *assets/*: Png for task delete 
     - *Header/*: Header program code for Front-End
