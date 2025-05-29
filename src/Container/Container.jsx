@@ -31,7 +31,6 @@ function Container() {
 
             data.data.tasks.forEach(element => {
                 const newTask = {id: element.id, taskTxt: element.tasks_text, isDone: element.tasks_status === "pending" ? false : true};
-                console.log("new task:", newTask);
                 setId(i => i = element.id + 1);
                 setInitialData(i => [...i, newTask]);
                 setTasks(t => [...t, newTask]);
@@ -94,7 +93,7 @@ function Container() {
                 setInitialData(i => [...i, task]);
             });
 
-            fetch('http://localhost:8000/server.php', {
+            fetch('http://localhost:8000/saveTasks.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(tasks),

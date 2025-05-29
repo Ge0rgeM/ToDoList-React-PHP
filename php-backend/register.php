@@ -1,15 +1,18 @@
 <?php
 
-require_once "headers.php";
-require_once "dbConnection.php";
+require_once "headers.php"; // Include headers for CORS, content-type, etc.
+require_once "dbConnection.php"; // Include database connection
 
+// Get JSON input and decode it into an associative array
 $data = json_decode(file_get_contents("php://input"), true);
 
+// Extract user input or set to empty string if not provided
 $username = $data['username'] ?? '';
 $email = $data['email'] ?? '';
 $password = $data['password'] ?? '';
 $repeatPassword = $data['repeatPassword'] ?? '';
 
+// Check if all required fields are set
 if(!isset($username,
           $email, 
           $password, 
@@ -19,17 +22,20 @@ if(!isset($username,
     exit();
 }
 
-// Sanitization
+// Validate username: only letters and numbers allowed
 if(!preg_match('/^[a-zA-Z0-9]+$/', $username)){
     echo json_encode(['error' => 'Username can only contain letters and numbers']);
     http_response_code(400);
     exit();
-}else if(strlen($username) < 6){
+}
+// Validate username length
+else if(strlen($username) < 6){
     echo json_encode(['error' => "Username must be at least 6 characters long. Given: $username"]);
     http_response_code(400);
     exit();
 }
 
+// Validate email format
 if(!preg_match("/^[^\s@]+@[^\s@]+\.[^\s@]+$/", $email)){
     echo json_encode(["error"=> "Invalid email format."]);
     http_response_code(400);
@@ -38,19 +44,22 @@ if(!preg_match("/^[^\s@]+@[^\s@]+\.[^\s@]+$/", $email)){
 // Sanitize email
 $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
+// Validate password length
 if(strlen($password) < 8) {
     echo json_encode(["error"=> "Password must be at least 8 characters long."]);
     http_response_code(400);
     exit();
-}else if ($password !== $repeatPassword) {
+}
+// Check if passwords match
+else if ($password !== $repeatPassword) {
     echo json_encode(["error"=> "Passwords do not match."]);
     http_response_code(400);
     exit();
 }
-//Hash password
+// Hash the password for secure storage
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-#check if the user is already registered
+// Check if the username already exists in the database
 $existingId = $pdo->prepare("SELECT id FROM users WHERE username = :username");
 $existingId->execute(['username' => $username]);
 if($existingId->fetch()){
@@ -67,4 +76,5 @@ $insertUser->execute([
     'pwd' => $hashedPassword
 ]);
 
+// Return success response
 echo json_encode(['success' => 'User registered successfully']);
