@@ -14,7 +14,7 @@ It's designed for local development using XAMPP.
 ## 📁 Project Structure
 - **php-backend/**: PHP backend logic
 - [`checkSession.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php): checks Session
-- **src/**: Static assets
+- **[`src/`](https://github.com/Ge0rgeM/ToDoList-React-PHP/tree/main/src)**: Static assets
     - [`assets/`](): PNG images for task delete functionality
     - [`Header/`](): Header component code for the frontend
     - [`Container/`](): Main container component code for the frontend
