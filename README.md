@@ -16,7 +16,7 @@ It's designed for local development using XAMPP.
 
 ---
 ## 📁 Project Structure
-- **php-backend/**: PHP backend logic
+- **[`php-backend/`](https://github.com/Ge0rgeM/ToDoList-React-PHP/tree/main/php-backend)**: PHP backend logic
 - [`checkSession.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php): checks Session
 - **[`src/`](https://github.com/Ge0rgeM/ToDoList-React-PHP/tree/main/src)**: Static assets
     - [`assets/`](https://github.com/Ge0rgeM/ToDoList-React-PHP/tree/main/src/assets): PNG images for task delete functionality
@@ -93,7 +93,7 @@ This will start Vite server (website).
 ### 🌐 5. Open the App in Your Browser
 In your web browser, write:
  - *http://localhost:5173* 
- 
+
 P.s. Make sure that PHP is running and accessible.
 
 
