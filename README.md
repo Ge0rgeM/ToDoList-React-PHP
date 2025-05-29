@@ -9,9 +9,9 @@ It's designed for local development using XAMPP.
 
 ---
 ## Table of Contents
-- [Project Structure](#-project-structure)
-- [Requirements](#-requirements)
-- [Required npm Packages](#-required-npm-packages)
+- [📁 Project Structure](#-project-structure)
+- [✅ Requirements](#-requirements)
+- [📦 Required npm Packages](#-required-npm-packages)
 - [▶️ How to View/Use Project](#️-how-to-viewuse-project)
 
 ---
@@ -29,6 +29,11 @@ It's designed for local development using XAMPP.
     - [`main.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/src/main.jsx): React Entry Point
 - [`index.html`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/index.html): Just Simple HTML
 - [`README.md`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/README.md): Project Documentation
+- [`.gitignore`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/README.md): Files that need to be ignored
+- [`eslint.config.js`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/eslint.config.js): ESLint configuration for better code quality
+- [`package.json`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/package.json): Project metadata and dependencies
+- [`package-lock.json`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/package-lock.json): Locked dependency tree for consistent installs
+- [`vite.config.js`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/vite.config.js): Vite-specific build settings
 
 ---
 ## ✅ Requirements
@@ -52,12 +57,44 @@ npm install
 ---
 ## ▶️ How to View/Use Project
 
-# 1. npm install
-# npm run dev
+Follow these steps to run the project on your local machine:
 
-# Change DB connection
+### 📁 1. Clone the Repository
+```bash
+git clone https://github.com/Ge0rgeM/ToDoList-React-PHP.git
+cd ToDoList-React-PHP
+```
 
-# Open XAMPP Start server
+### 📦 2. Install Node.js Dependencies
+```
+npm install
+```
+### 🐘 3. Set Up the PHP Backend
+ - Navigate to the *php-backend/* folder.
+ ```
+ cd ToDoList-React-PHP/php-backend
+ ```
+ - Run a local PHP server or move the folder into your XAMPP htdocs folder.
+ Open XAMPP-control and start Apache and MySQL server.
+ - You *do not* need to create anything in the database, since the code can do it my itself.
+ - Update *config.php* with your database credentials. (If your credentials are default you can leave it as it is).
+ - In *php-backend/* directory start server by writing:
+ ```
+ php -S localhost:8000
+ ```
+### ▶️ 4. Start the Development Server
+In the project root (*cd .../ToDoList-React-PHP*), run:
+```bash
+npm run dev
+```
+This will start Vite server (website).
 
-# cd php-backend
-# php -S localhost:8000
+### 🌐 5. Open the App in Your Browser
+In your web browser, write:
+ - *http://localhost:5173*
+P.s. Make sure that PHP is running and accessible.
+
+
+---
+Let me know if you'd like to add database setup instructions or screenshots too!
+---
