@@ -13,7 +13,7 @@ It's designed for local development using XAMPP.
 - [✅ Requirements](#-requirements)
 - [📦 Required npm Packages](#-required-npm-packages)
 - [▶️ How to View/Use Project](#️-how-to-viewuse-project)
-- [Contact Information](#contact-information)
+- [📬 Contact Information](#contact-information)
 
 ---
 ## 📁 Project Structure
@@ -102,7 +102,7 @@ This will start Vite server (website).
 In your web browser, write:
  - *http://localhost:5173* 
 
-P.s. Make sure that PHP is running and accessible.
+P.s. Make sure that PHP is running and is accessible.
 
 
 ---
