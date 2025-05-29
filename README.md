@@ -66,16 +66,16 @@ cd ToDoList-React-PHP
 ```
 
 ### 📦 2. Install Node.js Dependencies
-```
+```bash
 npm install
 ```
 ### 🐘 3. Set Up the PHP Backend
  - Navigate to the *php-backend/* folder.
- ```
+ ```bash
  cd ToDoList-React-PHP/php-backend
  ```
  - Run a local PHP server or move the folder into your XAMPP htdocs folder.
- Open XAMPP-control and start Apache and MySQL server.
+ - Open XAMPP-control and start Apache and MySQL server.
  - You *do not* need to create anything in the database, since the code can do it my itself.
  - Update *config.php* with your database credentials. (If your credentials are default you can leave it as it is).
  - In *php-backend/* directory start server by writing:
