@@ -9,22 +9,26 @@ It's designed for local development using XAMPP.
 
 ---
 ## Table of Contents
+- [Project Structure](#-project-structure)
+- [Requirements](#-requirements)
+- [Required npm Packages](#-required-npm-packages)
+- [▶️ How to View/Use Project](#️-how-to-viewuse-project)
 
 ---
 ## 📁 Project Structure
 - **php-backend/**: PHP backend logic
 - [`checkSession.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php): checks Session
 - **[`src/`](https://github.com/Ge0rgeM/ToDoList-React-PHP/tree/main/src)**: Static assets
-    - [`assets/`](): PNG images for task delete functionality
-    - [`Header/`](): Header component code for the frontend
-    - [`Container/`](): Main container component code for the frontend
-    - [`Pages/`](): Pages that are accessible by the user
-    - [`ProtectedRoute/`](): Code that protects the main page (ToDoList) from unauthorized access
-    - [`App.jsx`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php): Main APP Component 
-    - [`index.css`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php): Just CSS for index.html 
-    - [`main.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php): React Entry Point
-- [`index.html`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php): Just Simple HTML
-- [`README.md`](): Project Documentation
+    - [`assets/`](https://github.com/Ge0rgeM/ToDoList-React-PHP/tree/main/src/assets): PNG images for task delete functionality
+    - [`Header/`](https://github.com/Ge0rgeM/ToDoList-React-PHP/tree/main/src/Header): Header component code for the frontend
+    - [`Container/`](https://github.com/Ge0rgeM/ToDoList-React-PHP/tree/main/src/Container): Main container component code for the frontend
+    - [`Pages/`](https://github.com/Ge0rgeM/ToDoList-React-PHP/tree/main/src/Pages): Pages that are accessible by the user
+    - [`ProtectedRoute/`](https://github.com/Ge0rgeM/ToDoList-React-PHP/tree/main/src/ProtectedRoute): Code that protects the main page (ToDoList) from unauthorized access
+    - [`App.jsx`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/src/App.jsx): Main APP Component 
+    - [`index.css`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/src/index.css): Just CSS for index.html 
+    - [`main.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/src/main.jsx): React Entry Point
+- [`index.html`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/index.html): Just Simple HTML
+- [`README.md`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/README.md): Project Documentation
 
 ---
 ## ✅ Requirements
