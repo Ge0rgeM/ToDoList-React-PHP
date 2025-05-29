@@ -18,14 +18,14 @@ It's designed for local development using XAMPP.
 ---
 ## 📁 Project Structure
 - **[`php-backend/`](https://github.com/Ge0rgeM/ToDoList-React-PHP/tree/main/php-backend)**: PHP backend logic
-- [`checkSession.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php): checks Session
-- [`dbConnection.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/dbConnection.php): sets up connection to databse with username and password
-- [`headers.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/headers.php): all important policies to handle incoming requests
-- [`loadTasksFromDb.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/loadTasksFromDb.php): loads user tasks when user logs in
-- [`login.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/login.php): User Login
-- [`logout.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/logout.php): User Logout
-- [`register.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/register.php): User Register
-- [`saveTasks.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/saveTasks.php): Saves information to database (User Tasks)
+    - [`checkSession.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/checkSession.php): checks Session
+    - [`dbConnection.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/dbConnection.php): sets up connection to databse with username and password
+    - [`headers.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/headers.php): all important policies to handle incoming requests
+    - [`loadTasksFromDb.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/loadTasksFromDb.php): loads user tasks when user logs in
+    - [`login.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/login.php): User Login
+    - [`logout.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/logout.php): User Logout
+    - [`register.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/register.php): User Register
+    - [`saveTasks.php`](https://github.com/Ge0rgeM/ToDoList-React-PHP/blob/main/php-backend/saveTasks.php): Saves information to database (User Tasks)
 - **[`src/`](https://github.com/Ge0rgeM/ToDoList-React-PHP/tree/main/src)**: Static assets
     - [`assets/`](https://github.com/Ge0rgeM/ToDoList-React-PHP/tree/main/src/assets): PNG images for task delete functionality
     - [`Header/`](https://github.com/Ge0rgeM/ToDoList-React-PHP/tree/main/src/Header): Header component code for the frontend
