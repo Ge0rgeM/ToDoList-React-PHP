@@ -93,6 +93,7 @@ This will start Vite server (website).
 ### 🌐 5. Open the App in Your Browser
 In your web browser, write:
  - *http://localhost:5173* 
+ 
 P.s. Make sure that PHP is running and accessible.
 
 
