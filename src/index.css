@@ -1,3 +1,7 @@
+:root {
+    --fontOptions: cursive, 'Courier New', Courier, monospace, sans-serif;
+}
 body{
     background-color: #C3C1AB;
+    font-family: var(--fontOptions);
 }

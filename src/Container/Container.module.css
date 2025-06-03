@@ -24,7 +24,7 @@
     border: 2px solid #AE887B;
     font-size: 15px;
     font-weight: bold;
-    font-family: cursive;
+    font-family: var(--fontOptions);
     color: #AE887B;
 }
 .inputCss:focus{
@@ -41,7 +41,7 @@
     font-size: 28px;
     background-color: #F0DED0;
     font-weight:1000;
-    font-family: cursive;
+    font-family: var(--fontOptions);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     display: flex;
     justify-content: center;
@@ -51,13 +51,12 @@
     color: white;
     border: none;
     width: 100%;
-    height: 4vw;
     cursor: pointer;
     outline: none;
     font-size: 24px;
     background-color: #AE887B;
     font-weight:300;
-    font-family: cursive;
+    font-family: var(--fontOptions);
     transition: 0.5s;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
@@ -74,7 +73,7 @@
     font-size: 16px;
     background-color: #AE887B;
     font-weight:300;
-    font-family: cursive;
+    font-family: var(--fontOptions);
     transition: 1s;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     margin-left: 1%;
@@ -112,7 +111,7 @@
     display: flex;
     align-items: center;
     padding: 1%;
-    font-family: cursive;
+    font-family: var(--fontOptions);
 }
 .deleteImgButn{
     display: flex;
@@ -133,4 +132,35 @@
 .strike {
     text-decoration: line-through #AE887B 15%;
     color: #ddd1cc;
+}
+
+@media (max-width: 1280px) {
+    .wrapper {
+        max-width: 50vw;
+    }
+}
+@media (max-width: 768px) {
+    .userName{
+        font-size: 24px;
+        height: 6vw;
+        padding: 10px 0px 10px 0px;
+    }
+    .butn_logout{
+        font-size: 20px;
+        padding: 5px 0px 5px 0px;
+    }
+    .butn{
+        font-size: 12px;
+    }
+    .inputCss{
+        font-size: 12px;
+        width: 70%;
+    }
+    .task{
+        margin: 2% 0 2% 0;   
+    }
+    .taskText{
+        font-size: 16px;
+        padding: 1%;
+    }
 }

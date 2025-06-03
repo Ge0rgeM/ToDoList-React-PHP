@@ -3,7 +3,6 @@
     --input-text-color: #AE887B;
     --text-color: #3b2d28;
     --distance-to-inputs: 35px !important;
-    --font: cursive;
     --label-font: 16px;
     --input-font: 16px;
 }
@@ -24,7 +23,6 @@
     margin: auto;
     font-size: 24px;
     margin-bottom: var(--distance-to-inputs);
-    font-family: var(--font);
     color: var(--text-color);
 }
 
@@ -50,7 +48,6 @@
     border-radius: 5px;
     margin: 0;
     padding: 0;
-    font-family: var(--font);
     font-size: var(--input-size);
     border: 2px solid #AE887B;
     padding-left: 5px;
@@ -68,7 +65,6 @@
     width: 40%;
 }
 .inputLabels{
-    font-family: var(--font);
     color: var(--text-color);
     font-size: var(--label-font);
 }
@@ -91,7 +87,6 @@
     font-size: 16px;
     background-color: #AE887B;
     font-weight: 500;
-    font-family: var(--font);
     transition: 1s;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
@@ -107,7 +102,6 @@
 .registerButton{
     all:unset;
     cursor: pointer;
-    font-family: var(--font);
 }
 
 .errorWrapper{
@@ -116,7 +110,6 @@
     top: calc(var(--distance-to-inputs) - 15px);
     left: 0;
     color: #d93025;
-    font-family: var(--font);
     white-space: nowrap;
 }
 
